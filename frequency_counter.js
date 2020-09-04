@@ -5,11 +5,11 @@ function validAnagram(str1, str2){
   let sto1 = {};
   let sto2 = {};
   // iterate over both strings and store frequency in object
-  for (let char in str1) {
-      sto1[char] = sto1[char]++ || 1;
+  for (let char of str1) {
+      sto1[char] = ++sto1[char] || 1;
   }
-  for (let char in str2) {
-      sto2[char] = sto2[char]++ || 1;
+  for (let char of str2) {
+      sto2[char] = ++sto2[char] || 1;
   }
   // loop over one object and check that all strings match
   for (let key in sto1) {
