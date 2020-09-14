@@ -22,5 +22,22 @@ let countUniqueValues = (arr) => {
   return counter;
 }
 
-let test = [-5,1,1,2,3,4,4,4,4,5];
-console.log(countUniqueValues(test))
+// second solution with motifying the array to generate a unique array and using the back index tracker to find length (number of unique values)
+
+function countUniqueValues(arr){
+  // use two pointers and iterate through the array to generate unique values in front.
+  // i will move to generate a unique arr, while j will iterate to check values
+  // loop over arr
+  if (!arr.length) return 0;
+  let i = 0;
+  for (let j = 1; j < arr.length; j++) {
+      // if j is not the same as i
+      if (arr[j] !== arr[i]) {
+          // increment i
+          i++;
+          arr[i] = arr[j];
+      }
+  }
+  // return ++i
+  return ++i;
+ }
