@@ -4,6 +4,7 @@
 // idea: use two pointers. second pointer will iterate over the second string. once we find a match, first pointer will iterate over the first string. if the first pointer iterate through the entire length of the first string, return true.
 function isSubsequence(str1, str2) {
   // if str1 > str2, return false
+  if (!str1) return true;
   if (str1.length > str2.length) return false;
   // have two pointers (track of index)
   let firstPointer = 0;
