@@ -1,22 +1,31 @@
-// write a function that takes a sorted array. see if there is a pair of num that averages to the target
+// write a function that finds the minimal length for a sub array that has a sum equal or more than target.
 
-// because this is sorted, if we start from the beginning and the end. find the average of that number. if its more than target, we move the right side down, else we move the left side up. if its equal, we return true.
-// while left is less than right
-function averagePair(arr, target){
-  // make left and right variable
-  let left = 0;
-  let right = arr.length - 1;
-  // while left is less than right
-  while(left < right) {
-      // average left and right
-      let avg = (arr[left] + arr[right])/2;
-          // if equal return true
-          if (avg === target) return true;
-          // if more than target, more right down
-          else if (avg > target) right--;
-          // else move left up
-          else left++;
+// idea: iterate through the array and add element to check current total
+    // we keep track of right index and current sub array
+    // if current total is less than target, add a right element
+    // else (total is more or eql target) remove a left element
+    
+    let minSubArrayLen = (arr, target) => {
+      let right = 0;
+      let left = 0;
+      let currSize = 0;
+      let size = Infinity;
+      let total = 0;
+      while (right < arr.length) {
+          if (total < target) {
+              total += arr[right];
+              currSize++;
+              if (right + 1 < arr.length) right++;
+          } else if (total >= target && left < arr.length){
+              size = Math.min(currSize, size);
+              total -= arr[left];
+              left++
+              currSize--;
+          }
+          else if (left >= arr.length) {
+              break;
+          }
+          if (right === arr.length -1 && currSize === arr.length) return 0;
+      }
+      return size;
   }
-  // return false
-  return false;
-}
