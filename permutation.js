@@ -1,6 +1,5 @@
 // idea: iterate through the collection
     // take an item out and add to a temp array while iterating
-
     var permute = function(nums) {
       let storage = [];
       let rec = (arr, tempArr) => {
