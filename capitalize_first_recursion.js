@@ -8,11 +8,14 @@ function capitalizeFirst (arr) {
 
     let recurse = (array) => {
       // basecase: if we only have 1 element, push to result
+      if (array.length === 1) result.push(array[0][0].toUpperCase() + array[0].slice(1))
       // else
         // remove last element
+        let remove = array.pop();
         // recurse the array with removed element
+        recurse(array);
         // once we get back we push the removed element to the results
-
+        result.push(remove)
     };
 
     recurse(arr)
