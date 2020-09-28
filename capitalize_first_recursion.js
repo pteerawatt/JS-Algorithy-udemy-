@@ -23,3 +23,19 @@ function capitalizeFirst (arr) {
     recurse(arr)
     return result;
 }
+
+
+// this works without an inner function.
+function capitalizeFirst (arr) {
+  if (arr.length === 1) {
+      let temp = [];
+      temp.push(arr[0][0].toUpperCase() + arr[0].slice(1))
+      return temp
+  }
+
+  let remove = arr.pop();
+  let result = capitalizeFirst(arr);
+  result.push(remove[0].toUpperCase() + remove.slice(1))
+  
+  return result;
+}
