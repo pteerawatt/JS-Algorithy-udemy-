@@ -15,7 +15,7 @@ function capitalizeFirst (arr) {
         // recurse the array with removed element
         recurse(array);
         // once we get back we push the removed element to the results
-        result.push(remove)
+        result.push(remove[0].toUpperCase() + remove.slice(1))
     };
 
     recurse(arr)
