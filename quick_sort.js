@@ -14,6 +14,17 @@ const pivot = (arr) => {
   return s;
 }
 
+const quickSort = (arr) => {
+  if (arr.length <= 1) return arr
+  let exclude = pivot(arr);
+  return [...quickSort(arr.slice(0, exclude)), arr[exclude], ...quickSort(arr.slice(exclude + 1))]
+}
+
+
+
+
+
+
 
 // without helper function
 
@@ -36,4 +47,39 @@ const quickSort = (arr) => {
   let left = quickSort(arr.slice(0, counter));
   let right = quickSort(arr.slice(counter + 1));
   return [...left, arr[counter], ...right];
+}
+
+
+
+
+
+
+
+// this is the best way. Sorting in place without making a different array. faster than the two methods above
+
+const pivot = (arr, start = 0, end = arr.length - 1) => {
+  let target = arr[start];
+  let swapIdx = start;
+
+  for (let i = start + 1; i <= end; i++) {
+      if (target > arr[i]) {
+          swapIdx++;
+          [arr[swapIdx], arr[i]] = [arr[i], arr[swapIdx]];
+      }
+  }
+  [arr[start], arr[swapIdx]] = [arr[swapIdx], arr[start]];
+  return swapIdx;
+}
+
+const quickSort = (arr, start = 0, end = arr.length - 1) => {
+  if (start < end) {
+      let exclude = pivot(arr, start, end);
+
+      // left section
+      quickSort(arr, start, exclude - 1);
+      // right section
+      quickSort(arr, exclude + 1, end);
+  }
+  
+  return arr
 }
