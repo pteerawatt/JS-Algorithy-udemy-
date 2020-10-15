@@ -15,10 +15,25 @@ const pivot = (arr) => {
 }
 
 
+// without helper function
+
 const quickSort = (arr) => {
-  if (arr.length <= 1) return arr
-  let exclude = pivot(arr);
-  return [...quickSort(arr.slice(0, exclude)), arr[exclude], ...quickSort(arr.slice(exclude + 1))]
+  if (arr.length <= 1) return arr;
+  let counter = 0;
+  
+  // compare first element to element i.
+  for (let i = 1; i < arr.length; i++) {
+      // if element i is less than first element, update left side
+      if (arr[i] < arr[0]) {
+          counter ++;
+          [arr[i], arr[counter]] = [arr[counter], arr[i]];
+      }
+  }
+  
+  // at the end of the loop move the first element to its correct position
+  [arr[0], arr[counter]] = [arr[counter], arr[0]];
+
+  let left = quickSort(arr.slice(0, counter));
+  let right = quickSort(arr.slice(counter + 1));
+  return [...left, arr[counter], ...right];
 }
-
-
