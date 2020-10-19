@@ -23,10 +23,12 @@ class SinglyLinkedList {
       this.tail = newNode;
     }
     this.length++;
+    return this;
   }
 
+  // delete from tail
   pop() {
-    if (!this.head) return 'No item';
+    if (!this.head) return undefined;
     
     const removed = this.tail;
     const traverse = (node) => {
@@ -45,8 +47,33 @@ class SinglyLinkedList {
     return removed;
   }
 
-}
+  // delete from head
+  shift() {
+    if (!this.head) return undefined;
 
+    const removed = this.head;
+    this.head = this.head.next;
+    this.length--;
+    if (!this.length) this.tail = null;
+    return removed;
+  }
+
+  // insert to head
+  unshift(val) {
+    const newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    }
+    else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+}
+ 
 let LL = new SinglyLinkedList();
 LL.push(1);
 LL.push(2);
@@ -56,4 +83,9 @@ LL.pop();
 LL.pop();
 LL.pop();
 LL.push(1)
+LL.push(2)
+LL.shift()
+LL.shift()
+LL.unshift(1)
+LL.unshift(2)
 console.log(LL)
