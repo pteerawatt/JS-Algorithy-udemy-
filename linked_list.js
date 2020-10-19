@@ -24,8 +24,36 @@ class SinglyLinkedList {
     }
     this.length++;
   }
+
+  pop() {
+    if (!this.head) return 'No item';
+    
+    const removed = this.tail;
+    const traverse = (node) => {
+      if (!node.next) {
+        this.head = null;
+        this.tail = null;
+      }
+      else if (!node.next.next) {
+        node.next = null;
+        this.tail = node;
+      }
+      else traverse(node.next)
+    }
+    traverse(this.head)
+    this.length--;
+    return removed;
+  }
+
 }
 
 let LL = new SinglyLinkedList();
 LL.push(1);
-console.log(LL.head === LL.tail)
+LL.push(2);
+LL.push(3);
+LL.pop();
+LL.pop();
+LL.pop();
+LL.pop();
+LL.push(1)
+console.log(LL)
