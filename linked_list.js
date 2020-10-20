@@ -109,6 +109,18 @@ class SinglyLinkedList {
     this.length++;
     return true;
   }
+
+  // remove a value at an index
+  remove(i) {
+    if (i < 0 || i >= this.length) return null;
+    if (i === 0) return this.shift();
+    if (i === this.length - 1) return this.pop();
+    let priorNode = this.get(index - 1);
+    let removed = priorNode.next;
+    priorNode.next = removed.next;
+    this.length--;
+    return removed;
+  }
 }
  
 let LL = new SinglyLinkedList();
