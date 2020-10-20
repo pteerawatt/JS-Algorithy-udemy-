@@ -121,6 +121,28 @@ class SinglyLinkedList {
     this.length--;
     return removed;
   }
+
+  // reverse the linked list
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let prev = null;
+    let next = null;
+    for (let i = 0; i < this.length; i++) {
+      //   A    B    C
+      //   prev node next      
+
+      // save the right node
+      next = node.next;
+      // set the left node to prev
+      node.next = prev;
+      // move everything over to the right
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 }
  
 let LL = new SinglyLinkedList();
