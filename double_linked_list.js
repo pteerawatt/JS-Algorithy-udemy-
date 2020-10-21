@@ -14,7 +14,7 @@ class DoublyLinkedList {
   }
 
   // add to tail
-  push = (val) => {
+  push(val) {
     let newNode = new Node(val);
     if(this.length === 0) {
       this.head = newNode;
@@ -27,5 +27,35 @@ class DoublyLinkedList {
     return this;
   }
 
-  // 
+  // remove from tail
+  pop() {
+    if (!this.head) return undefined;
+    let poppedNode = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = poppedNode.prev;
+      this.tail.next = null;
+      poppedNode.prev = null;
+    }
+    this.length--;
+    return poppedNode;
+  }
+
+  // remove from head
+  shift() {
+    if (!this.head) return undefined;
+    let oldHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldHead.next;
+      this.head.prev = null;
+      oldHead.next = null;
+    }
+    this.length--;
+    return oldHead;
+  }
 }
