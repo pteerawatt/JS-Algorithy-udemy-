@@ -5,10 +5,14 @@ var numberOfSteps  = function(num) {
   
   while (num > 0) {
       num = num % 2 === 0 ? num/2 : num - 1;
-      console.log(num)
       step++
   }
   
   return step;
 };
 
+// one liner
+
+var numberOfSteps  = function(num) {
+  return !num ? 0 : 1 + numberOfSteps(num % 2 === 0 ? num/2 : num - 1)
+};
