@@ -8,7 +8,7 @@
 // Output: "leetcode"
 
 var restoreString = function(s, indices) {
-  let result = s.split('');
+  let result = [];
   for (i = 0; i < s.length; i++) {
       result[indices[i]] = s[i] ;
   }
