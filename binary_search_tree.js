@@ -15,7 +15,8 @@ class BinarySearchTree {
     if (!this.root) this.root = newNode;
     else {
       let current = this.root;
-      while (current.left || current.right) {
+      while (current.left && current.right) {
+        if (val === current.val) return 'cannot insert duplicate';
         if (val < current.val) current = current.left;
         else current = current.right;
       }
