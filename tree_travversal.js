@@ -35,4 +35,22 @@ class BinarySearchTree {
       else if (val > node.val) return this.search(val, node.right)
     }
   }
+
+  bfs() {
+    // have a queue (with root) and storage arr
+    // while queue is not empty
+      // dequeue and add value to storage
+      // if dequeued element have child, add child to queue
+    let queue = [this.root];
+    let storage = [];
+    
+    while (queue.length) {
+      let dequeue = queue.shift();
+      storage.push(dequeue.val);
+      if (dequeue.left) queue.push(dequeue.left);
+      if (dequeue.right) queue.push(dequeue.right)
+    }
+  
+    return storage;
+    }
 }
