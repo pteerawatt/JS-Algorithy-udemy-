@@ -55,12 +55,11 @@ class BinarySearchTree {
     }
   
   dfs(node = this.root, storage = []) {
-    // idea: use a combination of loop and recursion to get all the way down to the single element, push to storage, and then work backup the loop
-    if (!node.left && !node.right) storage.push(node.val);
-    else {
-      if (node.left) this.dfs(node.left, storage);
-      if (node.right) this.dfs(node.right, storage);
-    }
+    storage.push(node.val);
+    
+    if (node.left) this.dfs(node.left, storage);
+    if (node.right) this.dfs(node.right, storage);
+    
     return storage;
   }
 }
