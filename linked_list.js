@@ -127,19 +127,19 @@ class SinglyLinkedList {
     let node = this.head;
     this.head = this.tail;
     this.tail = node;
-    let prev = null;
-    let next = null;
+    let left = null;
+    let right = null;
     for (let i = 0; i < this.length; i++) {
       //   A    B    C
       //   prev node next      
 
       // save the right node
-      next = node.next;
+      right = node.next;
       // set the left node to prev
-      node.next = prev;
+      node.next = left;
       // move everything over to the right
-      prev = node;
-      node = next;
+      left = node;
+      node = right;
     }
     return this;
   }
