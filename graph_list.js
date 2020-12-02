@@ -70,6 +70,19 @@ class Graph {
     return storage;
   }
 
+  BFS(vertex, result = [vertex], memo = {}) {
+    if (!this.adjacencyList[vertex].length) return;
+    if (!memo[vertex]) {
+      memo[vertex] = true;
+      this.adjacencyList[vertex].forEach(e => {
+        if (!memo[e]) {
+          result.push(e);
+        }
+      })
+    }
+    this.adjacencyList[vertex].forEach(e => this.BFS(e, result, memo));
+    return result;
+  }
 }
 
 let G = new Graph();
