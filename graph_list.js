@@ -30,11 +30,11 @@ class Graph {
     delete this.adjacencyList[vertex];
   }
 
-  DFSRecursive(vertex, storage = [], memo = {}) {
-    // memo this vertex
-    memo[vertex] = true;
+  DFSRecursive(vertex, storage = [vertex], memo = {}) {
     // basecase: if theres no children
     if (!this.adjacencyList[vertex].length) return;
+    // memo this vertex
+    memo[vertex] = true;
     // loop over children
       // if children is not visited (not in memo)
         // recurse to that child
