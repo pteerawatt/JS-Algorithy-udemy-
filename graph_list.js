@@ -70,17 +70,24 @@ class Graph {
     return storage;
   }
 
-  BFS(vertex, result = [vertex], memo = {}) {
-    if (!this.adjacencyList[vertex].length) return;
-    if (!memo[vertex]) {
-      memo[vertex] = true;
-      this.adjacencyList[vertex].forEach(e => {
-        if (!memo[e]) {
-          result.push(e);
+  BFS(vertex) {
+    let queue = [vertex];
+    let result = [];
+    let visited = {};
+    visited[vertex] = true;
+    let current;
+
+    while (queue.length) {
+      current = queue.shift();
+      result.push(current);
+
+      this.adjacencyList[current].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
         }
-      })
+      });
     }
-    this.adjacencyList[vertex].forEach(e => this.BFS(e, result, memo));
     return result;
   }
 }
