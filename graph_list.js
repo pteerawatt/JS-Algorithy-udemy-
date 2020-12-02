@@ -46,4 +46,17 @@ class Graph {
     }
     return storage;
   }
+
 }
+
+let G = new Graph();
+G.addVertex("pete");
+G.addVertex("cj");
+G.addVertex("penny");
+G.addVertex("anubia");
+G.addEdge("pete", "cj");
+G.addEdge("pete", "penny");
+G.addEdge("cj", "anubia");
+G.addEdge("penny", "anubia");
+console.log(G.DFSRecursive("pete"));
+console.log(G.adjacencyList);
