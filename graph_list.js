@@ -50,13 +50,18 @@ class Graph {
 }
 
 let G = new Graph();
-G.addVertex("pete");
-G.addVertex("cj");
-G.addVertex("penny");
-G.addVertex("anubia");
-G.addEdge("pete", "cj");
-G.addEdge("pete", "penny");
-G.addEdge("cj", "anubia");
-G.addEdge("penny", "anubia");
-console.log(G.DFSRecursive("pete"));
+G.addVertex("A");
+G.addVertex("B");
+G.addVertex("C");
+G.addVertex("D");
+G.addVertex("E");
+G.addVertex("F");
+G.addEdge("A", "B");
+G.addEdge("A", "C");
+G.addEdge("B", "D");
+G.addEdge("C", "E");
+G.addEdge("D", "E");
+G.addEdge("D", "F");
+G.addEdge("E", "F");
+console.log(G.DFSRecursive("A"));
 console.log(G.adjacencyList);
