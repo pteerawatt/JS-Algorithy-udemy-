@@ -29,4 +29,21 @@ class Graph {
     }
     delete this.adjacencyList[vertex];
   }
+
+  DFSRecursive(vertex, storage = [], memo = {}) {
+    // memo this vertex
+    memo[vertex] = true;
+    // basecase: if theres no children
+    if (!this.adjacencyList[vertex].length) return;
+    // loop over children
+      // if children is not visited (not in memo)
+        // recurse to that child
+    for (let e in this.adjacencyList[vertex]) {
+      if (!memo[e]) {
+        storage.push(e);
+        this.DFSRecursive(e, storage, memo);
+      }
+    }
+    return storage;
+  }
 }
