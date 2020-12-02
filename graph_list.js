@@ -38,10 +38,33 @@ class Graph {
     // loop over children
       // if children is not visited (not in memo)
         // recurse to that child
-    for (let e in this.adjacencyList[vertex]) {
+    for (let e of this.adjacencyList[vertex]) {
       if (!memo[e]) {
         storage.push(e);
         this.DFSRecursive(e, storage, memo);
+      }
+    }
+    return storage;
+  }
+
+  DFSIterate(vertex) {
+    let storage = [];
+    let visited = {}
+
+    let stack = [vertex]
+    while (stack.length) {
+      // pop the stack
+      // if not visted
+        // memo vertex
+        // add stack to storage
+        // add all the children to stack
+      let v = stack.pop();
+      if (!visited[v]) {
+        visited[v] = true;
+        storage.push(v);
+        this.adjacencyList[v].forEach(e => {
+          stack.push(e);
+        });
       }
     }
     return storage;
