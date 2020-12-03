@@ -11,6 +11,29 @@ class WeightedGraph {
     this.adjacencyList[v1].push({ node: v2, weight});
     this.adjacencyList[v2].push({ node: v1, weight});
   }
+
+  dikstra(start, end) {
+    let distFromStart = {}
+    distFromStart[start] = 0;
+    let visited = {};
+    let previous = {};
+
+    // start the queue
+    // use while loop. while queue is not empty
+      // dequeue to see which vertext we will look at
+      // update visited and previous for children and dist
+      // enqueue children
+
+    let path = [end];
+    let current = end;
+    while (current !== start) {
+      path.push(previous[end]);
+      current = previous[end];
+    }
+    path.push(start);
+
+    return path.reverse();
+  }
 }
 
 // // test for weighted graph
