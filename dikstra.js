@@ -87,7 +87,16 @@ let G = new WeightedGraph();
 G.addVertex("A");
 G.addVertex("B");
 G.addVertex("C");
+G.addVertex("D");
+G.addVertex("E");
+G.addVertex("F");
 G.addEdge("A", "B", 9);
 G.addEdge("A", "C", 5);
-console.log(G.dikstra("A", "C"));
+G.addEdge("B", "E", 3);
+G.addEdge("C", "D", 2);
+G.addEdge("C", "F", 4);
+G.addEdge("D", "E", 3);
+G.addEdge("D", "F", 1);
+G.addEdge("E", "F", 1);
+console.log(G.dikstra("A", "E"));
 
