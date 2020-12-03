@@ -74,8 +74,8 @@ class WeightedGraph {
     let path = [end];
     let current = end;
     while (current !== start) {
-      path.push(previous[end]);
-      current = previous[end];
+      path.push(previous[current]);
+      current = previous[current];
     }
 
     return path.reverse();
@@ -90,8 +90,8 @@ G.addVertex("C");
 G.addVertex("D");
 G.addVertex("E");
 G.addVertex("F");
-G.addEdge("A", "B", 9);
-G.addEdge("A", "C", 5);
+G.addEdge("A", "B", 4);
+G.addEdge("A", "C", 2);
 G.addEdge("B", "E", 3);
 G.addEdge("C", "D", 2);
 G.addEdge("C", "F", 4);
