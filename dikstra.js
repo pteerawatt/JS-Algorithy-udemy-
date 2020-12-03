@@ -60,7 +60,13 @@ class WeightedGraph {
       if (!visited[vertex]) {
         visited[vertex] = true;
         for (let key of this.adjacencyList[vertex]) {
-          distFromStart[key.node] = distFromStart[vertex] + key.weight;
+          // update distant from start to vertex if its a smaller value
+          let currentDist = distFromStart[vertex] + key.weight;
+          if (currentDist < distFromStart[key.node]) {
+            distFromStart[key.node] = currentDist;
+            previous[key.node] = vertex;
+          }
+          queue.enqueue(key.node, currentDist);
         }
       }
     }
@@ -71,7 +77,6 @@ class WeightedGraph {
       path.push(previous[end]);
       current = previous[end];
     }
-    path.push(start);
 
     return path.reverse();
   }
@@ -84,5 +89,5 @@ G.addVertex("B");
 G.addVertex("C");
 G.addEdge("A", "B", 9);
 G.addEdge("A", "C", 5);
-G.dikstra("A", "C");
+console.log(G.dikstra("A", "C"));
 
