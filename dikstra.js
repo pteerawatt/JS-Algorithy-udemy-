@@ -38,27 +38,33 @@ class PriorityHeap {
 
   dequeue() {
     const dequeued = this.storage[0];
-    this.storage[0] = this.storage[this.storage.length - 1];
-    this.storage.pop();
-    const currIdx = 0;
-    const leftIdx = currIdx*2 + 1;
-    const rightIdx = currIdx*2 + 2;
-    while (currIdx < this.storage.length) {
-      let swap;
-      if (this.storage[currIdx] > this.storage[leftIdx]) {
-        swap = leftIdx;
+    const end = this.storage.pop();
+    if (this.storage.length > 0) {
+      this.storage[0] = end;
+      let currIdx = 0;
+      while (true) {
+        const leftIdx = currIdx*2 + 1;
+        const rightIdx = currIdx*2 + 2;
+        let swap = null;
+        if (leftIdx < this.storage.length) {
+          if (this.storage[currIdx].priority > this.storage[leftIdx].priority) {
+            swap = leftIdx;
+          }
+        }
+        if (rightIdx < this.storage.length) {
+          if (this.storage[currIdx].priority > this.storage[rightIdx].priority
+             && 
+             this.storage[leftIdx].priority > this.storage[rightIdx].priority) {
+               swap = rightIdx;
+          }
+        }
+        if (swap) {
+          [this.storage[currIdx], this.storage[swap]]
+          =
+          [this.storage[swap], this.storage[currIdx]];
+          currIdx = swap;
+        } else break;
       }
-      if (this.storage[currIdx] > this.storage[rightIdx]
-         && 
-         this.storage[leftIdx] > this.storage[rightIdx]) {
-           swap = rightIdx;
-      }
-      if (swap) {
-        [this.storage[currIdx], this.storage[swap]]
-        =
-        [this.storage[swap], this.storage[currIdx]];
-        currIdx = swap;
-      } else break;
     }
     return dequeued;
   }
@@ -103,7 +109,7 @@ class WeightedGraph {
     let queue = new PriorityHeap();
     queue.enqueue(start, 0);
 
-    while (queue.queue.length) {
+    while (queue.storage.length) {
       let current = queue.dequeue();
       let vertex = current.value;
       if (!visited[vertex]) {
