@@ -19,6 +19,36 @@ class PriorityQueue {
 // Q.enqueue("Q", 20);
 // console.log(Q.dequeue());
 
+class PriorityHeap {
+  constructor() {
+    this.storage = [];
+  }
+
+  enqueue(value, priority) {
+    // push into storage and then bubble up
+    // in a loop, check parent. if parent is lower, switch
+    this.storage.push({ value, priority });
+    let currIdx = this.storage.length - 1;
+    let parentIdx = Math.floor((currIdx - 1)/2);
+    while (parentIdx >= 0) {
+      if (this.storage[currIdx].priority < this.storage[parentIdx].priority) {
+        [this.storage[parentIdx], this.storage[currIdx]] = [this.storage[currIdx], this.storage[parentIdx]];
+        currIdx = parentIdx;
+      } else break;
+    }
+  }
+
+  dequeue() {
+
+  }
+}
+
+let H = new PriorityHeap();
+H.enqueue("A", 4);
+H.enqueue("B", 2);
+H.enqueue("C", 1);
+console.log(H.storage);
+
 class WeightedGraph {
   constructor() {
     this.adjacencyList = {}
@@ -48,7 +78,7 @@ class WeightedGraph {
     // start the queue
     let queue = new PriorityQueue();
     queue.enqueue(start, 0);
-    
+
     while (queue.queue.length) {
       let current = queue.dequeue();
       let vertex = current.value;
@@ -77,21 +107,21 @@ class WeightedGraph {
   }
 }
 
-// test for weighted graph
-let G = new WeightedGraph();
-G.addVertex("A");
-G.addVertex("B");
-G.addVertex("C");
-G.addVertex("D");
-G.addVertex("E");
-G.addVertex("F");
-G.addEdge("A", "B", 4);
-G.addEdge("A", "C", 2);
-G.addEdge("B", "E", 3);
-G.addEdge("C", "D", 2);
-G.addEdge("C", "F", 4);
-G.addEdge("D", "E", 3);
-G.addEdge("D", "F", 1);
-G.addEdge("E", "F", 1);
-console.log(G.dikstra("A", "E"));
+// // test for weighted graph
+// let G = new WeightedGraph();
+// G.addVertex("A");
+// G.addVertex("B");
+// G.addVertex("C");
+// G.addVertex("D");
+// G.addVertex("E");
+// G.addVertex("F");
+// G.addEdge("A", "B", 4);
+// G.addEdge("A", "C", 2);
+// G.addEdge("B", "E", 3);
+// G.addEdge("C", "D", 2);
+// G.addEdge("C", "F", 4);
+// G.addEdge("D", "E", 3);
+// G.addEdge("D", "F", 1);
+// G.addEdge("E", "F", 1);
+// console.log(G.dikstra("A", "E"));
 
