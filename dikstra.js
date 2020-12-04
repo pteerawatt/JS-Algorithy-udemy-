@@ -1,13 +1,13 @@
 class PriorityQueue {
   constructor() {
-    this.queue = [];
+    this.storage = [];
   }
   enqueue(value, priority) {
-    this.queue.push({ value, priority});
-    this.queue.sort((a, b) => a.priority - b.priority);
+    this.storage.push({ value, priority});
+    this.storage.sort((a, b) => a.priority - b.priority);
   }
   dequeue() {
-    return this.queue.shift();
+    return this.storage.shift();
   }
 }
 
@@ -100,7 +100,7 @@ class WeightedGraph {
     }
 
     // start the queue
-    let queue = new PriorityQueue();
+    let queue = new PriorityHeap();
     queue.enqueue(start, 0);
 
     while (queue.queue.length) {
@@ -131,21 +131,21 @@ class WeightedGraph {
   }
 }
 
-// // test for weighted graph
-// let G = new WeightedGraph();
-// G.addVertex("A");
-// G.addVertex("B");
-// G.addVertex("C");
-// G.addVertex("D");
-// G.addVertex("E");
-// G.addVertex("F");
-// G.addEdge("A", "B", 4);
-// G.addEdge("A", "C", 2);
-// G.addEdge("B", "E", 3);
-// G.addEdge("C", "D", 2);
-// G.addEdge("C", "F", 4);
-// G.addEdge("D", "E", 3);
-// G.addEdge("D", "F", 1);
-// G.addEdge("E", "F", 1);
-// console.log(G.dikstra("A", "E"));
+// test for weighted graph
+let G = new WeightedGraph();
+G.addVertex("A");
+G.addVertex("B");
+G.addVertex("C");
+G.addVertex("D");
+G.addVertex("E");
+G.addVertex("F");
+G.addEdge("A", "B", 4);
+G.addEdge("A", "C", 2);
+G.addEdge("B", "E", 3);
+G.addEdge("C", "D", 2);
+G.addEdge("C", "F", 4);
+G.addEdge("D", "E", 3);
+G.addEdge("D", "F", 1);
+G.addEdge("E", "F", 1);
+console.log(G.dikstra("A", "E"));
 
