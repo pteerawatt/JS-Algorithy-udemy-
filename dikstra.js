@@ -25,8 +25,6 @@ class PriorityHeap {
   }
 
   enqueue(value, priority) {
-    // push into storage and then bubble up
-    // in a loop, check parent. if parent is lower, switch
     this.storage.push({ value, priority });
     let currIdx = this.storage.length - 1;
     let parentIdx = Math.floor((currIdx - 1)/2);
@@ -39,15 +37,41 @@ class PriorityHeap {
   }
 
   dequeue() {
-
+    const dequeued = this.storage[0];
+    this.storage[0] = this.storage[this.storage.length - 1];
+    this.storage.pop();
+    const currIdx = 0;
+    const leftIdx = currIdx*2 + 1;
+    const rightIdx = currIdx*2 + 2;
+    while (currIdx < this.storage.length) {
+      let swap;
+      if (this.storage[currIdx] > this.storage[leftIdx]) {
+        swap = leftIdx;
+      }
+      if (this.storage[currIdx] > this.storage[rightIdx]
+         && 
+         this.storage[leftIdx] > this.storage[rightIdx]) {
+           swap = rightIdx;
+      }
+      if (swap) {
+        [this.storage[currIdx], this.storage[swap]]
+        =
+        [this.storage[swap], this.storage[currIdx]];
+        currIdx = swap;
+      } else break;
+    }
+    return dequeued;
   }
 }
 
-let H = new PriorityHeap();
-H.enqueue("A", 4);
-H.enqueue("B", 2);
-H.enqueue("C", 1);
-console.log(H.storage);
+// // test for heap
+// let H = new PriorityHeap();
+// H.enqueue("A", 4);
+// H.enqueue("B", 2);
+// H.enqueue("C", 1);
+// console.log(H.dequeue());
+// console.log(H.storage);
+// console.log(H.dequeue());
 
 class WeightedGraph {
   constructor() {
