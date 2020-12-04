@@ -48,12 +48,7 @@ class WeightedGraph {
     // start the queue
     let queue = new PriorityQueue();
     queue.enqueue(start, 0);
-
-    // use while loop. while queue is not empty
-      // dequeue to see which vertext we will look at
-      // update visited, children and dist, and path
-      // enqueue children
-
+    
     while (queue.queue.length) {
       let current = queue.dequeue();
       let vertex = current.value;
