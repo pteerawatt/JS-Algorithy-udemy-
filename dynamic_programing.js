@@ -15,3 +15,16 @@ const fibSeqDP = (n, sto = {}) => {
   sto[n] = fib(n - 2, sto) + fib(n - 1, sto);
   return sto[n];
 }
+
+// next we use dynamic programming but we start from the button of the tree and work out way up.
+
+const fibSeqDP_BU = (n) => {
+  // start the sequence
+  let sto = [1, 1];
+
+  // loop till we get to the nth sequence and return the nth value
+  for (let i = 2; i <= n; i++) {
+    sto[i] = sto[i-1] + sto[i-2];
+  }
+  return sto[n];
+}
